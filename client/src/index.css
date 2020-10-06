@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header{
+  background-color: #0096C7;
+  
+}
+.nav-link {
+  color: #CAF0F8 !important;
+}
+
+.logindiv{
+  height: 400px;
+  width: 300px;
+  margin:auto;
+ 
+ 
+  
+}
+.logindiv img{
+  opacity: 0.2;
+}
