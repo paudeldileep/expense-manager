@@ -1,4 +1,4 @@
-const auth = require('../../middleware/auth');
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -54,7 +54,7 @@ exports.userlogin=async (req,res)=>{
 
         jwt.sign(
             payload, 
-            config.get('jwtSecret'),
+            config.secretKey,
             {expiresIn: 3600},
             (err,token)=>{ 
                 if(err) throw err;
