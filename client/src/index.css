@@ -13,21 +13,35 @@ code {
 }
 
 .header{
-  background-color: #0096C7;
-  
+  background-color: #023E8A;
 }
 .nav-link {
   color: #CAF0F8 !important;
 }
-
-.logindiv{
-  height: 400px;
-  width: 300px;
-  margin:auto;
- 
- 
-  
+.color-blue{
+  color: #023E8A
 }
-.logindiv img{
-  opacity: 0.2;
+.bg-blue{
+  background-color: #023E8A
+}
+.color-orange{
+  color:#e76f51;
+}
+.danger-bg{
+  background-color:#d62828 ;
+  color:#CAF0F8;
+  -webkit-box-shadow: -1px 2px 16px 1px rgba(2,62,138,1);
+  -moz-box-shadow: -1px 2px 16px 1px rgba(2,62,138,1);
+  box-shadow: -1px 2px 16px 1px rgba(2,62,138,1);
+}
+
+.logindiv,.signup-card{
+  height: auto;
+  width: 350px;
+  margin:auto;
+}
+.login-card,.signup-card {
+  -webkit-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
+-moz-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
+box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
 }

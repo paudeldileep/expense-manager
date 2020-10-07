@@ -4,12 +4,12 @@ import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
-//import { logout } from "../../actions/auth"
+import { logout } from "../../../actions/auth"
 
-const Header = (props) => {
+const Header = ({auth:{isAuthenticated,loading},logout}) => {
   const AuthLinks =(
     
-      <Nav.Link as={Link} to='/'>
+      <Nav.Link as={Link} to='/' onClick={logout}>
         Sign Out
       </Nav.Link>
     
@@ -39,7 +39,7 @@ const Header = (props) => {
             {CommonLinks}
           </Nav>
           <Nav className='mr-auto'>
-            {/*{!loading && isAuthenticated && AuthLinks} */}
+            {!loading && isAuthenticated && AuthLinks}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -48,6 +48,6 @@ const Header = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  //auth: state.auth,
+  auth: state.auth,
 })
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps,{logout})(Header)
