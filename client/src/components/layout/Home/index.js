@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const index = props => {
+const Home = props => {
     return (
         <>
-        
+        home
         </>
     )
 }
 
-index.propTypes = {
+Home.propTypes = {
 
 }
 
-export default index
+export default Home

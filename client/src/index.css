@@ -21,11 +21,20 @@ code {
 .color-blue{
   color: #023E8A
 }
+.color-white{
+  color: #CAF0F8
+}
 .bg-blue{
   background-color: #023E8A
 }
 .color-orange{
   color:#e76f51;
+}
+.bg-red{
+  background-color:#d62828 ;
+}
+.bg-bgreen{
+  background-color: #0096C7;
 }
 .danger-bg{
   background-color:#d62828 ;
