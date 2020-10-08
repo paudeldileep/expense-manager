@@ -58,17 +58,16 @@ export const login = ({email,password}) =>async dispatch=>{
         const errors = err.response.data.errors;
 
         if(errors){
-            errors.forEach(error=> dispatch(setAlert(error.msg)));
+            errors.forEach(error=> dispatch(setAlert(error.msg,"danger-bg")));
         }
         dispatch({
             type:LOGIN_FAIL,
-            
         });
     }
 }
 
 
-//register teacher
+//register new user
 
 export const register = (formData) =>async dispatch=>{
     
@@ -99,12 +98,11 @@ export const register = (formData) =>async dispatch=>{
         const errors = err.response.data.errors;
 
         if(errors){
-            errors.forEach(error=> dispatch(setAlert(error.msg,'danger')));
+            errors.forEach(error=> dispatch(setAlert(error.msg,"danger-bg")));
         }
         }
         dispatch({
-            type:REGISTER_FAIL,
-            
+            type:REGISTER_FAIL,  
         });
         
     }

@@ -34,7 +34,7 @@ const SignUp = ({
   const onSubmit = async (e) => {
     e.preventDefault()
     if (!name || !email || password.length < 6) {
-      setAlert("Please provide all valid values")
+      setAlert("Please provide all valid values","danger-bg")
     } else {
       //console.log(formData)
       register(formData);

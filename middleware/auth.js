@@ -19,6 +19,6 @@ module.exports = function(req,res,next){
         next();
     }catch(err){
         console.error(err.message);
-        res.status(401).json({msg: 'Invalid token'});
+        return res.status(401).json({msg: 'Invalid token,Please Login Again'});
     }
 };

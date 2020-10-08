@@ -23,7 +23,7 @@ exports.exppost = async (req, res) => {
     await expense.save()
 
     return res.status(200).json({
-      message: "Expense recorded succesfully!",
+      msg:"Expense recorded succesfully!",
     })
   } catch (err) {
     console.error(err.message)

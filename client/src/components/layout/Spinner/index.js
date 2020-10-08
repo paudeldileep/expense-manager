@@ -5,7 +5,7 @@ import Spinner from 'react-bootstrap/Spinner'
 
 const LoadingScreen = (props) => {
     return (
-        <Container className="align-items-center text-center" style={{'padding-top':'30vh'}}>
+        <Container className="align-items-center text-center" style={{'paddingTop':'30vh'}}>
             <Spinner animation="border" />
     <p>{props.message != null ? props.message: 'Loading...' }</p>
         </Container>

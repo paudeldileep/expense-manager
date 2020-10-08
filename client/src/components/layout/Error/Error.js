@@ -8,7 +8,7 @@ const Error = ({alerts}) =>alerts !== null &&
 alerts.length > 0 &&
 alerts.map((alert) => (
   <Fade>
-  <div key={alert.id} className="text-center danger-bg">
+  <div key={alert.id} id="error-div" className={`${alert.type}`}>
     <Alert>
       {alert.msg}
     </Alert>

@@ -7,6 +7,7 @@ import {
   LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  NOT_LOADING,
 } from "../actions/types"
 
 const initialState = {
@@ -25,6 +26,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isloading: true,
+      }
+    case NOT_LOADING:
+      return {
+        ...state,
+        isloading: false,
       }
     case USER_LOADED:
       return {

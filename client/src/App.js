@@ -17,7 +17,7 @@ import About from './components/layout/About'
 import News from './components/layout/News'
 import Home from './components/layout/Home'
 import SignUp from './components/layout/SignUp'
-import AddExpense from './components/Expense/Addexpense'
+import Addexpense from './components/Expense/Addexpense/Addexpense'
 
 
 import {loaduser} from './actions/auth'
@@ -38,14 +38,15 @@ function App() {
       <Router>
         <>
         <Header/>
+        <Route exact path="/" component={LandingPage}/>
         <Container fluid>
           <Switch>
-          <Route exact path="/" component={LandingPage}/>
+          
           <Route exact path="/about" component={About} />
           <Route exact path="/news" component={News}/>
           <Route exact path="/signup" component={SignUp}/>
           <PrivateRoute exact path='/home' component={Home} />
-          <PrivateRoute exact path='/addexpence' component={AddExpense} />
+          <PrivateRoute exact path='/addexpense' component={Addexpense} />
           </Switch>
         </Container>
         </>
