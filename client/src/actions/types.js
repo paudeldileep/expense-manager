@@ -13,3 +13,11 @@ export const LOGOUT = 'LOGOUT';
 export const LOADING = 'LOADING';
 export const NOT_LOADING = 'NOT_LOADING';
 export const CLEAR_PROFILE='CLEAR_PROFILE';
+
+export const GET_EXPCM = 'GET_EXPCM';
+export const CLEAR_EXPCM = 'CLEAR_EXPCM';
+export const EXPCM_FAIL = 'EXPCM_FAIL';
+
+export const GET_EXP = 'GET_EXP';
+export const CLEAR_EXP = 'CLEAR_EXP';
+export const EXP_FAIL = 'EXP_FAIL';
