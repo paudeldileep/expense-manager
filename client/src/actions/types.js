@@ -28,3 +28,21 @@ export const EXP_FAIL = 'EXP_FAIL';
 export const GET_EXPCG = 'GET_EXPCG';
 export const CLEAR_EXPCG = 'CLEAR_EXPCG';
 export const EXPCG_FAIL = 'EXPCG_FAIL';
+
+//plot data
+
+//expenses: monthly plot
+export const GET_PLOTM = 'GET_PLOTM';
+export const CLEAR_PLOTM = 'CLEAR_PLOTM';
+export const PLOTM_FAIL = 'PLOTM_FAIL';
+
+//avg plot
+export const GET_PLOTAVG = 'GET_PLOTAVG';
+export const CLEAR_PLOTAVG = 'CLEAR_PLOTAVG';
+export const PLOTAVG_FAIL = 'PLOTAVG_FAIL';
+
+//yearly
+//avg plot
+export const GET_PLOTY = 'GET_PLOTY';
+export const CLEAR_PLOTY = 'CLEAR_PLOTY';
+export const PLOTY_FAIL = 'PLOTY_FAIL';

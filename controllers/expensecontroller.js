@@ -201,17 +201,17 @@ exports.expgetcg = async (req, res) => {
 
 // plot 1
 exports.expplotavg = async (req, res) => {
-  const firstdate = new Date(req.query.firstdate)
-  const lastdate = new Date(req.query.lastdate)
+  const firstdate = new Date(req.query.startdate)
+  const lastdate = new Date(req.query.enddate)
 
   try {
-    let categoryMonthlyAvg = await Expense.aggregate([
-      { $match : { incurred_on : { $gte : firstdate, $lte: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id)}},
+    let categoryavg = await Expense.aggregate([
+      { $match : { incurred_on : { $gte : firstdate, $lte: lastdate }, author: mongoose.Types.ObjectId(req.user.id)}},
       { $group : { _id : {category: "$category"}, totalSpent:  {$sum: "$amount"} } },
       { $group: { _id: "$_id.category", avgSpent: { $avg: "$totalSpent"}}},
       { $project: {x: '$_id', y: '$avgSpent'}}
     ]).exec()
-    res.json({monthAVG:categoryMonthlyAvg})
+    res.json({avgdata:categoryavg})
   } catch (err){
     console.log(err)
     return res.status(400).json({
@@ -227,7 +227,7 @@ exports.expplotavg = async (req, res) => {
   const lastdate = new Date(y, 12, 0)
   try {
     let totalMonthly = await Expense.aggregate(  [
-      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id) }},
+      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, author: mongoose.Types.ObjectId(req.user.id) }},
       { $group: { _id: {$month: "$incurred_on"}, totalSpent:  {$sum: "$amount"} } },
       { $project: {x: '$_id', y: '$totalSpent'}}
     ]).exec()
@@ -241,14 +241,14 @@ exports.expplotavg = async (req, res) => {
 }
 
 //plot 3
-exports.expplot = async (req, res) => {
+exports.expplotm = async (req, res) => {
   const date = new Date(req.query.month), y = date.getFullYear(), m = date.getMonth()
   const firstdate = new Date(y, m, 1)
   const lastdate = new Date(y, m + 1, 0)
 
   try {
     let totalMonthly = await Expense.aggregate(  [
-      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id) }},
+      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, author: mongoose.Types.ObjectId(req.user.id) }},
       { $project: {x: {$dayOfMonth: '$incurred_on'}, y: '$amount'}}
     ]).exec()
     res.json(totalMonthly)

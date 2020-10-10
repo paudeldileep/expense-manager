@@ -26,5 +26,20 @@ Router.get('/cm',auth,Controller.expgetcm);
 //@access Private 
 Router.get('/cg',auth,Controller.expgetcg);
 
+//@route POST api/exp/plotm
+//@desc monthly plot
+//@access Private 
+Router.get('/plotm',auth,Controller.expplotm);
+
+//@route POST api/exp/ploty
+//@desc yearly plot
+//@access Private 
+Router.get('/ploty',auth,Controller.expplotyearly);
+
+//@route POST api/exp/plotavg
+//@desc avg plot
+//@access Private 
+Router.get('/plotavg',auth,Controller.expplotavg);
+
 
 module.exports = Router;

@@ -15,6 +15,9 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
       <Nav.Link as={Link} to='/search'>
         <Button className='bg-bgreen' size="sm"><i className='fa fa-search color-white'></i>Search</Button>
       </Nav.Link>
+      <Nav.Link as={Link} to='/plots'>
+        <Button className='bg-bgreen' size="sm"><i className='fa fa-line-chart color-white'></i>Analyze</Button>
+      </Nav.Link>
       <Nav.Link as={Link} to='/' onClick={logout}>
         <Button className='bg-red' size="sm"><i className='fa fa-sign-out color-white'></i> Sign Out</Button>
       </Nav.Link>

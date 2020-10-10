@@ -10,12 +10,24 @@ import {
   CLEAR_EXPCG,
   GET_EXPCG,
   EXPCG_FAIL,
+  CLEAR_PLOTM,
+  GET_PLOTM,
+  PLOTM_FAIL,
+  CLEAR_PLOTAVG,
+  GET_PLOTAVG,
+  PLOTAVG_FAIL,
+  CLEAR_PLOTY,
+  GET_PLOTY,
+  PLOTY_FAIL,
 } from "../actions/types"
 
 const initialState = {
   expsearch: [],
   expcm: null,
-  expcg:[],
+  expcg: [],
+  plotm: null,
+  plotavg:null,
+  ploty:null,
   loading: true,
   error: {},
 }
@@ -29,7 +41,6 @@ export default function (state = initialState, action) {
         ...state,
         expcm: null,
         loading: false,
-        
       }
     case GET_EXPCM:
       return {
@@ -43,12 +54,11 @@ export default function (state = initialState, action) {
         error: payload,
         loading: false,
       }
-      case CLEAR_EXP:
+    case CLEAR_EXP:
       return {
         ...state,
         expsearch: [],
         loading: false,
-        
       }
     case GET_EXP:
       return {
@@ -62,12 +72,11 @@ export default function (state = initialState, action) {
         error: payload,
         loading: false,
       }
-      case CLEAR_EXPCG:
+    case CLEAR_EXPCG:
       return {
         ...state,
         expcg: [],
         loading: false,
-        
       }
     case GET_EXPCG:
       return {
@@ -81,6 +90,60 @@ export default function (state = initialState, action) {
         error: payload,
         loading: false,
       }
+    case CLEAR_PLOTM:
+      return {
+        ...state,
+        plotm: null,
+        loading: false,
+      }
+    case GET_PLOTM:
+      return {
+        ...state,
+        plotm: payload,
+        loading: false,
+      }
+    case PLOTM_FAIL:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      }
+      case CLEAR_PLOTAVG:
+      return {
+        ...state,
+        plotavg: null,
+        loading: false,
+      }
+    case GET_PLOTAVG:
+      return {
+        ...state,
+        plotavg: payload,
+        loading: false,
+      }
+    case PLOTAVG_FAIL:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      }
+      case CLEAR_PLOTY:
+        return {
+          ...state,
+          ploty: null,
+          loading: false,
+        }
+      case GET_PLOTY:
+        return {
+          ...state,
+          ploty: payload,
+          loading: false,
+        }
+      case PLOTY_FAIL:
+        return {
+          ...state,
+          error: payload,
+          loading: false,
+        }
     case LOADING:
       return {
         ...state,

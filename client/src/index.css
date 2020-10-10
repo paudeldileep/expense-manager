@@ -100,7 +100,7 @@ box-shadow: 1px 1px 10px 4px rgba(3,4,94,1);
   margin: 3px;
   border-radius: 8px;
 }
-.login-card,.signup-card,.addexpense-card,.expcm-div,.categories-div,.search-result-div {
+.login-card,.signup-card,.addexpense-card,.expcm-div,.categories-div,.search-result-div,.m-plot-result-div,.avg-plot-result-div,.y-plot-result-div {
   -webkit-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
 -moz-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
 box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
@@ -142,4 +142,9 @@ color:#CAF0F8;
   color:#33415C;
   font-size: large;
   font-weight: 500;
+ }
+ .m-plot-result-div,.avg-plot-result-div,.y-plot-result-div{
+   height:auto;
+   width:600px;
+   margin: auto;
  }

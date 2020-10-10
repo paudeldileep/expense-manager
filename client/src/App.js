@@ -18,6 +18,7 @@ import News from './components/layout/News'
 import Home from './components/layout/Home'
 import SignUp from './components/layout/SignUp'
 import Addexpense from './components/Expense/Addexpense/Addexpense'
+import Plothome from './components/layout/Home/Plots'
 
 
 import {loaduser} from './actions/auth'
@@ -49,6 +50,7 @@ function App() {
           <PrivateRoute exact path='/home' component={Home} />
           <PrivateRoute exact path='/addexpense' component={Addexpense} />
           <PrivateRoute exact path='/search' component={Searchresult} />
+          <PrivateRoute exact path='/plots' component={Plothome} />
           </Switch>
         </Container>
         </>
