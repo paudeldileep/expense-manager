@@ -65,7 +65,17 @@ export const getexpcm = () => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_EXPCM, payload: res.data })
   } catch (err) {
-    console.log(err)
+    
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
 
     //dispatch({
       //type: EXPCM_FAIL,
@@ -93,12 +103,25 @@ export const getexp = ({ startdate, enddate }) => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_EXP, payload: res.data })
   } catch (err) {
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
+
+    {/* 
     console.log(err)
     dispatch({
       type: EXP_FAIL,
       payload: { msg: err.response.statusText, status: err.response.status },
     })
     //dispatch({ type: NOT_LOADING })
+    */}
   }
 }
 
@@ -118,11 +141,16 @@ export const getexpcg = () => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_EXPCG, payload: res.data })
   } catch (err) {
-    console.log(err)
-    dispatch({
-      type: EXPCG_FAIL,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
     //dispatch({ type: NOT_LOADING })
   }
 
@@ -148,11 +176,17 @@ export const getexpplotm = (month) => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_PLOTM, payload: res.data })
   } catch (err) {
-    console.log(err)
-    dispatch({
-      type: PLOTM_FAIL,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
     //dispatch({ type: NOT_LOADING })
   }
 
@@ -178,11 +212,16 @@ export const getexpplotavg = ({startdate,enddate}) => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_PLOTAVG, payload: res.data })
   } catch (err) {
-    console.log(err)
-    dispatch({
-      type: PLOTAVG_FAIL,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
     //dispatch({ type: NOT_LOADING })
   }
 
@@ -208,7 +247,16 @@ export const getexpploty = (year) => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
     dispatch({ type: GET_PLOTY, payload: res.data })
   } catch (err) {
-    console.log(err)
+    if (err.response) {
+      // client received an error response (5xx, 4xx)
+      console.log(err.response)
+    } else if (err.request) {
+      // client never received a response, or request never left
+      console.log(err.request)
+    } else {
+      // anything else
+      console.log(err)
+    }
   //  dispatch({
     //  type: PLOTY_FAIL,
      // payload: { msg: err.response.statusText, status: err.response.status },
@@ -216,4 +264,34 @@ export const getexpploty = (year) => async (dispatch) => {
     //dispatch({ type: NOT_LOADING })
   }
 
+}
+
+export const deleteexp = (expid) => async (dispatch) => {
+  //dispatch({ type: LOADING })
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    params:{
+      expid:expid
+    }
+  }
+
+
+  try {
+    const res = await axios.delete("/api/exp/deleteexp",config)
+
+    //dispatch({ type: NOT_LOADING })
+    dispatch(setAlert(res.data.msg, "danger-bg"))
+  } catch (err) {
+    //console.error(err.response.data);
+    //dispatch({ type: NOT_LOADING })
+    const errors = err.response.data.errors
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger-bg")))
+    }
+   
+  }
 }

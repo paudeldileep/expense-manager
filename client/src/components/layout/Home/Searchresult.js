@@ -7,8 +7,12 @@ import Expdatasearch from "./Expdatasearch"
 import Searchexp from "./Searchexp"
 import { connect } from "react-redux"
 
+import {deleteexp} from '../../../actions/expense'
+import Error from '../Error/Error'
 
-const Searchresult = ({ expense, getexp }) => {
+
+const Searchresult = ({ expense, getexp,deleteexp }) => {
+
   const [expdata, setexpdata] = useState([])
   const[isloading,setisloading]=useState(true);
 
@@ -20,6 +24,17 @@ const Searchresult = ({ expense, getexp }) => {
     }
     
   }, [expense])
+
+  const removeexpdata = (exp) => {
+    if(window.confirm('Are you sure to delete this?')){
+    const updatedexpdata = [...expdata]
+    const index = updatedexpdata.indexOf(exp)
+    updatedexpdata.splice(index, 1)
+    setexpdata(updatedexpdata)
+
+    deleteexp(exp._id)
+    }
+}
 
   //console.log(expdata)
   //useState hooks
@@ -56,7 +71,8 @@ const Searchresult = ({ expense, getexp }) => {
       </div>
       ): (
         <div className='text-center search-result-div'>
-          <Expdatasearch searchdata={expdata} />
+          <Error/>
+          <Expdatasearch searchdata={expdata} removeexp={removeexpdata}/>
         </div>
       ) }
     </Container>
@@ -72,4 +88,4 @@ const mapStateToProps = (state) => ({
   expense: state.expense.expsearch,
 })
 
-export default connect(mapStateToProps, { getexp })(Searchresult)
+export default connect(mapStateToProps, { getexp,deleteexp})(Searchresult)

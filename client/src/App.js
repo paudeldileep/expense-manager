@@ -41,7 +41,7 @@ function App() {
         <>
         <Header/>
         <Route exact path="/" component={LandingPage}/>
-        <Container fluid>
+        <Container className="background-dim" fluid>
           <Switch>
           
           <Route exact path="/about" component={About} />

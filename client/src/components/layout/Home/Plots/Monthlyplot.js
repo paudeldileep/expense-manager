@@ -28,7 +28,7 @@ const Monthlyplot = ({ plot,getexpplotm }) => {
 
   return (
     <Container fluid>
-      Monthly plot
+     <span className='plot-header'>Monthly Expense Plot</span>
       <div className='m-plot-search-div'>
         <Form onSubmit={onSubmit}>
           <Form.Row className='align-items-center justify-content-center'>
@@ -53,7 +53,7 @@ const Monthlyplot = ({ plot,getexpplotm }) => {
           </Form.Row>
         </Form>
       </div>
-      {!plot? (<p>Search something</p>):(
+      {!plot? (<p className="search-text text-center">Please select a month</p>):(
       <div className='m-plot-result-div'>
         <VictoryChart
           theme={VictoryTheme.material}

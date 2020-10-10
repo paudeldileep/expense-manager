@@ -26,6 +26,11 @@ Router.get('/cm',auth,Controller.expgetcm);
 //@access Private 
 Router.get('/cg',auth,Controller.expgetcg);
 
+//@route DELETE api/exp/deleteexp
+//@desc get expenses by category 
+//@access Private 
+Router.delete('/deleteexp',auth,Controller.expdelete);
+
 //@route POST api/exp/plotm
 //@desc monthly plot
 //@access Private 

@@ -29,6 +29,7 @@ const Yearlyplot = ({ plot, getexpploty }) => {
   }
   return (
     <Container fluid>
+      <span className='plot-header'>Yearly Expense Plot</span>
       <div className="y-plot-search-div">
         <Form onSubmit={onSubmit}>
           <Form.Row className='align-items-center justify-content-center'>
@@ -56,7 +57,7 @@ const Yearlyplot = ({ plot, getexpploty }) => {
           </Form.Row>
         </Form>
       </div>
-      {!plot ? (<p>search something</p>):(
+      {!plot ? (<p className="search-text text-center">Please select a year</p>):(
       <div className="y-plot-result-div">
       <VictoryChart
                 theme={VictoryTheme.material}

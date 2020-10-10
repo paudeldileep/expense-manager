@@ -26,11 +26,11 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const CommonLinks = (
     <Fragment>
-      <Nav.Link as={Link} to='/about'>
-        About
+      <Nav.Link as={Link} to='/'>
+        <span className="nav-text">About</span>
       </Nav.Link>
-      <Nav.Link as={Link} to='/news'>
-        News
+      <Nav.Link as={Link} to='/'>
+      <span className="nav-text">News</span>
       </Nav.Link>
     </Fragment>
   )
@@ -40,8 +40,8 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
       <Navbar className='header' collapseOnSelect expand='md'>
         <Navbar.Brand as={Link} to='/'>
           <img
-            src='/assets/logo-ncit-lms.png'
-            height='40'
+            src='/assets/em_logo_f.png'
+           
             className='d-inline-block align-top'
             alt='Expense-Manager-Logo'
           />

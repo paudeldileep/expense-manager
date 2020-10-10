@@ -195,6 +195,36 @@ exports.expgetcg = async (req, res) => {
   }
 }
 
+//delete expense
+
+exports.expdelete=async(req,res)=>{
+
+  
+  const expid=req.query.expid;
+
+  try{
+    const exp = await Expense.findById(expid);
+
+    if(!exp){
+        return res.status(404).json({msg:'Expense data not found'});
+    }
+    //check user todo
+    
+
+    await exp.remove();
+
+    res.json({msg: 'Expense data deleted!'});
+  }
+  catch(err){
+    console.error(err.message);
+    if(err.kind === 'ObjectId'){
+        return res.status(404).json({msg:'Expense data not found'});
+    }
+    res.status(500).send('Server Error');
+}
+
+}
+
 
 //plots
 
