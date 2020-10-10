@@ -61,7 +61,7 @@ code {
   width: 400px;
   margin:auto;
 }
-.expcm-div ,.search-div{
+.expcm-div ,.search-div,.categories-div,.search-result-div{
   height: auto;
   width: 100%;
   max-width: 800px;
@@ -74,6 +74,10 @@ code {
 }
 .expcm-div-card{
   background-color: #0077B6;
+}
+.categories-div-card,.search-result-div-card{
+  background-color: #90E0EF;
+  margin: 3px;
 }
 
 .round-div{
@@ -96,7 +100,7 @@ box-shadow: 1px 1px 10px 4px rgba(3,4,94,1);
   margin: 3px;
   border-radius: 8px;
 }
-.login-card,.signup-card,.addexpense-card,.expcm-div {
+.login-card,.signup-card,.addexpense-card,.expcm-div,.categories-div,.search-result-div {
   -webkit-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
 -moz-box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
 box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
@@ -121,3 +125,21 @@ box-shadow: 0px 6px 5px 0px rgba(3,4,94,1);
  text-shadow: 1px 2px 3px rgba(3,4,94,1);
 color:#CAF0F8;
 }
+
+.grey-text{
+  text-shadow: 1px 2px 3px rgba(151, 157, 172,1);
+ color:#33415C;
+ }
+ .plain-white-text{
+  font-size:large ;
+ }
+ .title-imp{
+   font-size:larger;
+   font-style: italic;
+ }
+ .categories-div-card-text{
+  text-shadow: 1px 2px 3px rgba(151, 157, 172,1);
+  color:#33415C;
+  font-size: large;
+  font-weight: 500;
+ }

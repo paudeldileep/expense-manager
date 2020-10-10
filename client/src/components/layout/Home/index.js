@@ -1,50 +1,59 @@
 import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
-import { connect } from "react-redux"
+import { connect, useDispatch } from "react-redux"
+
 import Expensecm from "./Expensecm"
 
 import Searchresult from "./Searchresult"
 
 import { getexpcm } from "../../../actions/expense"
+
 import Spinner from "../Spinner"
 
 import { Fade } from "react-awesome-reveal"
+import ExpCategory from "./ExpCategory"
 
 const Home = ({ expense: { expcm }, getexpcm }) => {
-  const [expmonth, setExpmonth] = useState(0)
-  const [exptoday, setExptoday] = useState(0)
-  const [expyesterday, setExpyesterday] = useState(0)
+  //const dispatch =useDispatch();
 
-  const[isloading,setisloading]=useState(true);
+  //const [expmonth, setExpmonth] = useState(0)
+  //const [exptoday, setExptoday] = useState(0)
+  //const [expyesterday, setExpyesterday] = useState(0)
+
+  const [isloading, setisloading] = useState(true)
 
   useEffect(() => {
-      if(!expcm){
-        getexpcm()
-      }
-    if(expcm) {
-        setExpmonth(expcm.month.totalSpent)
-        setExptoday(expcm.today.totalSpent)
-        setExpyesterday(expcm.yesterday.totalSpent)
-        setisloading(false)
-      }
-  }, [expcm])
+    getexpcm()
+    //return()=> dispatch({type:'CLEAR_EXPCM'})
+  }, [getexpcm])
 
-  
+  {
+    /* 
+  const setdatavalues=()=>{
+    if (expcm) {
+      if (expcm.month) setExpmonth(expcm.month.totalSpent)
+      if (expcm.today) setExptoday(expcm.today.totalSpent)
+      if (expcm.yesterday) setExpyesterday(expcm.yesterday.totalSpent)
+      setisloading(false)
+
+      // expmonth={expmonth}
+              exptoday={exptoday}
+              expyesterday={expyesterday}
+    }
+  }
+*/
+  }
   return (
     <>
-    <Fade>
-      {isloading ? (
-        <Spinner message='Please wait..' />
-      ) : (
-        <>
-          <Expensecm
-            expmonth={expmonth}
-            exptoday={exptoday}
-            expyesterday={expyesterday}
-          />
-          <Searchresult />
-        </>
-      )}
+      <Fade>
+        {isloading && !expcm ? (
+          <Spinner message='Please wait..' />
+        ) : (
+          <>
+            <Expensecm expense={expcm}/>
+            <ExpCategory />
+          </>
+        )}
       </Fade>
     </>
   )

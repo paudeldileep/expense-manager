@@ -23,7 +23,7 @@ exports.exppost = async (req, res) => {
     await expense.save()
 
     return res.status(200).json({
-      msg:"Expense recorded succesfully!",
+      msg: "Expense recorded succesfully!",
     })
   } catch (err) {
     console.error(err.message)
@@ -123,4 +123,139 @@ exports.expgetcm = async (req, res) => {
   }
 
   // res.json({firstday:firstDay,lastDay:lastDay,today:today,tomorrow:tomorrow,yesterday:yesterday});
+}
+
+//expense by category
+exports.expgetcg = async (req, res) => {
+  const date = new Date(),
+    y = date.getFullYear(),
+    m = date.getMonth()
+  const firstDay = new Date(y, m, 1)
+  const lastDay = new Date(y, m + 1, 0)
+
+  try {
+    let categoryMonthlyAvg = await Expense.aggregate([
+      {
+        $facet: {
+          average: [
+            { $match: { author: mongoose.Types.ObjectId(req.user.id) } },
+            {
+              $group: {
+                _id: {
+                  category: "$category",
+                  month: { $month: "$incurred_on" },
+                },
+                totalSpent: { $sum: "$amount" },
+              },
+            },
+            {
+              $group: {
+                _id: "$_id.category",
+                avgSpent: { $avg: "$totalSpent" },
+              },
+            },
+            {
+              $project: {
+                _id: "$_id",
+                value: { average: "$avgSpent" },
+              },
+            },
+          ],
+          total: [
+            {
+              $match: {
+                incurred_on: { $gte: firstDay, $lte: lastDay },
+                author: mongoose.Types.ObjectId(req.user.id),
+              },
+            },
+            { $group: { _id: "$category", totalSpent: { $sum: "$amount" } } },
+            {
+              $project: {
+                _id: "$_id",
+                value: { total: "$totalSpent" },
+              },
+            },
+          ],
+        },
+      },
+      {
+        $project: {
+          overview: { $setUnion: ["$average", "$total"] },
+        },
+      },
+      { $unwind: "$overview" },
+      { $replaceRoot: { newRoot: "$overview" } },
+      { $group: { _id: "$_id", expenses: { $mergeObjects: "$value" } } },
+    ]).exec()
+    res.json(categoryMonthlyAvg)
+  } catch (err) {
+    console.log(err)
+    //console.error(err.message)
+    res.status(500).send("Server error")
+  }
+}
+
+
+//plots
+
+
+// plot 1
+exports.expplotavg = async (req, res) => {
+  const firstdate = new Date(req.query.firstdate)
+  const lastdate = new Date(req.query.lastdate)
+
+  try {
+    let categoryMonthlyAvg = await Expense.aggregate([
+      { $match : { incurred_on : { $gte : firstdate, $lte: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id)}},
+      { $group : { _id : {category: "$category"}, totalSpent:  {$sum: "$amount"} } },
+      { $group: { _id: "$_id.category", avgSpent: { $avg: "$totalSpent"}}},
+      { $project: {x: '$_id', y: '$avgSpent'}}
+    ]).exec()
+    res.json({monthAVG:categoryMonthlyAvg})
+  } catch (err){
+    console.log(err)
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+// plot 2
+ exports.expplotyearly = async (req, res) => {
+  const y = req.query.year
+  const firstdate = new Date(y, 0, 1)
+  const lastdate = new Date(y, 12, 0)
+  try {
+    let totalMonthly = await Expense.aggregate(  [
+      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id) }},
+      { $group: { _id: {$month: "$incurred_on"}, totalSpent:  {$sum: "$amount"} } },
+      { $project: {x: '$_id', y: '$totalSpent'}}
+    ]).exec()
+    res.json({monthTot:totalMonthly})
+  } catch (err){
+    console.log(err)
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+//plot 3
+exports.expplot = async (req, res) => {
+  const date = new Date(req.query.month), y = date.getFullYear(), m = date.getMonth()
+  const firstdate = new Date(y, m, 1)
+  const lastdate = new Date(y, m + 1, 0)
+
+  try {
+    let totalMonthly = await Expense.aggregate(  [
+      { $match: { incurred_on: { $gte : firstdate, $lt: lastdate }, recorded_by: mongoose.Types.ObjectId(req.auth._id) }},
+      { $project: {x: {$dayOfMonth: '$incurred_on'}, y: '$amount'}}
+    ]).exec()
+    res.json(totalMonthly)
+  } catch (err){
+    console.log(err)
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }

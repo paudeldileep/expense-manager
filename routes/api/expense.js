@@ -21,5 +21,10 @@ Router.get('/',auth,Controller.expget);
 //@access Private 
 Router.get('/cm',auth,Controller.expgetcm);
 
+//@route GET api/exp/cg
+//@desc get expenses by category 
+//@access Private 
+Router.get('/cg',auth,Controller.expgetcg);
+
 
 module.exports = Router;

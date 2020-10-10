@@ -4,22 +4,21 @@ import Card from "react-bootstrap/esm/Card"
 const Expdatasearch = ({ searchdata }) => {
   console.log(searchdata)
   return (searchdata.map((data) =>
-    <div className='search-result-div' key={data._id}>
-      <Card>
+    
+      <Card className="search-result-div-card" key={data._id}>
         <Card.Header>
-          <Card.Title>{data.title}</Card.Title>
-          <Card.Subtitle className='mb-2 text-muted'>
-            {data.category}
-          </Card.Subtitle>
+          
+<Card.Title className="grey-text"><span className="title-imp">NRs.{data.amount}</span> spent for <span className="title-imp">{data.title}</span> {'('}{data.incurred_on.split('T')[0]}{')'}</Card.Title>
+  
         </Card.Header>
         <Card.Body>
-  <Card.Title>NRs.{data.amount} spent on {data.incurred_on.split('T')[0]}</Card.Title>
-          <Card.Subtitle className='mb-2 text-muted'>
-            {data.notes}-{data.author.name}
+  
+          <Card.Subtitle className='mb-2 text-muted plain-white-text'>
+          {'['} {data.category} {']'} {data.notes}-{data.author.name}
           </Card.Subtitle>
         </Card.Body>
       </Card>
-    </div>
+    
   )
   )
 }

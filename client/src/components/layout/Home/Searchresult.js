@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import Container from "react-bootstrap/esm/Container"
 import { getexp } from "../../../actions/expense"
+
 import Expdatasearch from "./Expdatasearch"
 import Searchexp from "./Searchexp"
 import { connect } from "react-redux"
@@ -17,6 +18,7 @@ const Searchresult = ({ expense, getexp }) => {
       setisloading(false)
      
     }
+    
   }, [expense])
 
   //console.log(expdata)
@@ -53,7 +55,7 @@ const Searchresult = ({ expense, getexp }) => {
         <p className="white-text">Please seacrh expenses between certain date!</p>
       </div>
       ): (
-        <div className='text-center'>
+        <div className='text-center search-result-div'>
           <Expdatasearch searchdata={expdata} />
         </div>
       ) }
@@ -63,6 +65,7 @@ const Searchresult = ({ expense, getexp }) => {
 
 Searchresult.propTypes = {
   getexp: PropTypes.func.isRequired,
+  
 }
 
 const mapStateToProps = (state) => ({

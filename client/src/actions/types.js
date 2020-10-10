@@ -14,10 +14,17 @@ export const LOADING = 'LOADING';
 export const NOT_LOADING = 'NOT_LOADING';
 export const CLEAR_PROFILE='CLEAR_PROFILE';
 
+//expenses: month,day,yesterday
 export const GET_EXPCM = 'GET_EXPCM';
 export const CLEAR_EXPCM = 'CLEAR_EXPCM';
 export const EXPCM_FAIL = 'EXPCM_FAIL';
 
+//expenses: between given dates
 export const GET_EXP = 'GET_EXP';
 export const CLEAR_EXP = 'CLEAR_EXP';
 export const EXP_FAIL = 'EXP_FAIL';
+
+//expenses: by category
+export const GET_EXPCG = 'GET_EXPCG';
+export const CLEAR_EXPCG = 'CLEAR_EXPCG';
+export const EXPCG_FAIL = 'EXPCG_FAIL';

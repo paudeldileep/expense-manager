@@ -7,7 +7,8 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 
-const Expensecm = ({ expmonth, exptoday, expyesterday }) => {
+const Expensecm = ({expense}) => {
+ //console.log(expense)
   return (
     <>
       <div className='expcm-div mt-2'>
@@ -23,17 +24,17 @@ const Expensecm = ({ expmonth, exptoday, expyesterday }) => {
                   <div className='round-div'>
                     <h6 className='white-text'>This Month</h6>
 
-                    <h5 className='white-text'>Nrs.{expmonth}</h5>
+                    <h5 className='white-text'>Nrs.{expense.month ? expense.month.totalSpent : 0}</h5>
                   </div>
                 </Col>
                 <Col xs={12} md={6} lg={6} className='text-center p-1'>
                   <div className='rect-div-cm'>
                     <h6 className='white-text'>Today</h6>
-                    <p className='white-text'>Nrs.{exptoday}</p>
+                    <p className='white-text'>Nrs.{expense.today ? expense.today.totalSpent : 0}</p>
                   </div>
                   <div className='rect-div-cm'>
                     <h6 className='white-text'>Yesterday</h6>
-                    <p className='white-text'>Nrs.{expyesterday}</p>
+                    <p className='white-text'>Nrs.{expense.yesterday ? expense.yesterday.totalSpent : 0}</p>
                   </div>
                 </Col>
               </Row>

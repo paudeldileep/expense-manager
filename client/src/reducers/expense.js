@@ -7,11 +7,15 @@ import {
   CLEAR_EXP,
   GET_EXP,
   EXP_FAIL,
+  CLEAR_EXPCG,
+  GET_EXPCG,
+  EXPCG_FAIL,
 } from "../actions/types"
 
 const initialState = {
   expsearch: [],
   expcm: null,
+  expcg:[],
   loading: true,
   error: {},
 }
@@ -53,6 +57,25 @@ export default function (state = initialState, action) {
         loading: false,
       }
     case EXP_FAIL:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      }
+      case CLEAR_EXPCG:
+      return {
+        ...state,
+        expcg: [],
+        loading: false,
+        
+      }
+    case GET_EXPCG:
+      return {
+        ...state,
+        expcg: payload,
+        loading: false,
+      }
+    case EXPCG_FAIL:
       return {
         ...state,
         error: payload,

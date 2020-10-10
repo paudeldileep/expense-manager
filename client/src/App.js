@@ -22,6 +22,7 @@ import Addexpense from './components/Expense/Addexpense/Addexpense'
 
 import {loaduser} from './actions/auth'
 import setAuthToken from './utils/setAuthToken';
+import Searchresult from './components/layout/Home/Searchresult';
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -47,6 +48,7 @@ function App() {
           <Route exact path="/signup" component={SignUp}/>
           <PrivateRoute exact path='/home' component={Home} />
           <PrivateRoute exact path='/addexpense' component={Addexpense} />
+          <PrivateRoute exact path='/search' component={Searchresult} />
           </Switch>
         </Container>
         </>
