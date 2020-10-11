@@ -8,6 +8,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   NOT_LOADING,
+  OLOGIN_SUCCESS
 } from "../actions/types"
 
 const initialState = {
@@ -63,6 +64,11 @@ export default function (state = initialState, action) {
         user: null,
         isloading: false,
       }
+      case OLOGIN_SUCCESS:
+        return{
+          ...state,
+          isAuthenticated:true
+        }
     default:
       return state
   }

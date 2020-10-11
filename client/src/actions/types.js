@@ -8,11 +8,12 @@ export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const LOGIN_SUCCESS='LOGIN_SUCCESS';
+export const OLOGIN_SUCCESS='OLOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const LOADING = 'LOADING';
 export const NOT_LOADING = 'NOT_LOADING';
-export const CLEAR_PROFILE='CLEAR_PROFILE';
+
 
 //expenses: month,day,yesterday
 export const GET_EXPCM = 'GET_EXPCM';

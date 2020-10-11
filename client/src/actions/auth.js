@@ -1,8 +1,9 @@
 import axios from 'axios'
 import {setAlert} from './alert';
-import{ USER_LOADED, AUTH_ERROR,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,CLEAR_PROFILE,REGISTER_SUCCESS,REGISTER_FAIL, LOADING} from './types';
+import{ USER_LOADED, AUTH_ERROR,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,REGISTER_SUCCESS,REGISTER_FAIL, LOADING,OLOGIN_SUCCESS} from './types';
 
 import setAuthToken from '../utils/setAuthToken';
+import { ExclamationCircle } from 'react-bootstrap-icons';
 
 
 //LOAD user
@@ -113,5 +114,13 @@ export const register = (formData) =>async dispatch=>{
 
 export const logout = () =>dispatch =>{
     dispatch({type:LOGOUT});
-    dispatch({type:CLEAR_PROFILE})
+    
+}
+
+//oauth sign in
+
+export const oauthsignin = (email) =>dispatch =>{
+    console.log(email)
+    dispatch({type:OLOGIN_SUCCESS});
+    
 }

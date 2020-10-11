@@ -12,6 +12,7 @@ import {login} from '../../actions/auth'
 
 import Error from '../layout/Error/Error'
 import Spinner from '../layout/Spinner'
+import GoogleAuth from "./GoogleAuth";
 
 const Login = ({login,auth:{isAuthenticated,user,isloading}}) => {
   //useState hooks
@@ -33,7 +34,7 @@ const Login = ({login,auth:{isAuthenticated,user,isloading}}) => {
   }
 
   //Redirect if logged in
-  if (isAuthenticated && user !== null) {
+  if (isAuthenticated) {
      return <Redirect to='/home' />
   }
 
@@ -77,9 +78,8 @@ const Login = ({login,auth:{isAuthenticated,user,isloading}}) => {
           <Button variant='primary' type='button' className='mr-2'>
             <i className='fa fa-facebook-official' aria-hidden='true'></i> FaceBook
           </Button>
-          <Button variant='primary' type='button'>
-            <i className='fa fa-google' aria-hidden='true'></i> Google
-          </Button>
+
+          <GoogleAuth/>
         </Card.Footer>
       </Card>
       </div>
