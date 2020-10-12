@@ -75,7 +75,7 @@ const Login = ({login,auth:{isAuthenticated,user,isloading}}) => {
         </Card.Body>
         <Card.Footer className='text-center'>
           <h6 className='color-blue'>-------OR-------</h6>
-          <Button variant='primary' type='button' className='mr-2'>
+          <Button variant='primary' as={Link} to='/signup' className='mr-2'>
             <i className='fa fa-facebook-official' aria-hidden='true'></i> FaceBook
           </Button>
 

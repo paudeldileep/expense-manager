@@ -5,21 +5,37 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import Button from "react-bootstrap/Button"
 import { logout } from "../../../actions/auth"
+import GoogleAuth from "../../auth/GoogleAuth"
 
-const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Header = ({
+  auth: { isAuthenticated, loading, gloginstatus },
+  logout,
+}) => {
   const AuthLinks = (
     <>
       <Nav.Link as={Link} to='/addexpense'>
-        <Button className='bg-bgreen' size="sm"><i className='fa fa-plus color-white'></i>Add Expense</Button>
+        <Button className='bg-bgreen' size='sm'>
+          <i className='fa fa-plus color-white'></i>Add Expense
+        </Button>
       </Nav.Link>
       <Nav.Link as={Link} to='/search'>
-        <Button className='bg-bgreen' size="sm"><i className='fa fa-search color-white'></i>Search</Button>
+        <Button className='bg-bgreen' size='sm'>
+          <i className='fa fa-search color-white'></i>Search
+        </Button>
       </Nav.Link>
       <Nav.Link as={Link} to='/plots'>
-        <Button className='bg-bgreen' size="sm"><i className='fa fa-line-chart color-white'></i>Analyze</Button>
+        <Button className='bg-bgreen' size='sm'>
+          <i className='fa fa-line-chart color-white'></i>Analyze
+        </Button>
       </Nav.Link>
-      <Nav.Link as={Link} to='/' onClick={logout}>
-        <Button className='bg-red' size="sm"><i className='fa fa-sign-out color-white'></i> Sign Out</Button>
+      <Nav.Link >
+        {gloginstatus ? (
+          <GoogleAuth />
+        ) : (
+          <Button as={Link} to='/' onClick={logout} className='bg-red' size='sm'>
+            <i className='fa fa-sign-out color-white'></i> Sign Out
+          </Button>
+        )}
       </Nav.Link>
     </>
   )
@@ -27,10 +43,10 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
   const CommonLinks = (
     <Fragment>
       <Nav.Link as={Link} to='/'>
-        <span className="nav-text">About</span>
+        <span className='nav-text'>About</span>
       </Nav.Link>
       <Nav.Link as={Link} to='/'>
-      <span className="nav-text">News</span>
+        <span className='nav-text'>News</span>
       </Nav.Link>
     </Fragment>
   )
@@ -41,7 +57,6 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Navbar.Brand as={Link} to='/'>
           <img
             src='/assets/em_logo_f.png'
-           
             className='d-inline-block align-top'
             alt='Expense-Manager-Logo'
           />
@@ -49,9 +64,7 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto nav-link'>{CommonLinks}</Nav>
-          <Nav className='mr-0'>
-            {!loading && isAuthenticated && AuthLinks}
-          </Nav>
+          <Nav className='mr-0'>{!loading && isAuthenticated && AuthLinks}</Nav>
         </Navbar.Collapse>
       </Navbar>
     </>

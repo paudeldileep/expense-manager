@@ -13,14 +13,14 @@ import Spinner from "../Spinner"
 import { Fade } from "react-awesome-reveal"
 import ExpCategory from "./ExpCategory"
 
-const Home = ({ expense: { expcm }, getexpcm }) => {
+const Home = ({ expense: { expcm }, getexpcm,auth:{isloading} }) => {
   //const dispatch =useDispatch();
 
   //const [expmonth, setExpmonth] = useState(0)
   //const [exptoday, setExptoday] = useState(0)
   //const [expyesterday, setExpyesterday] = useState(0)
 
-  const [isloading, setisloading] = useState(true)
+  //const [isloading, setisloading] = useState(true)
 
   useEffect(() => {
     getexpcm()
@@ -46,12 +46,17 @@ const Home = ({ expense: { expcm }, getexpcm }) => {
   return (
     <>
       <Fade>
-        {isloading && !expcm ? (
+        {isloading ? (
           <Spinner message='Please wait..' />
         ) : (
           <>
-            <Expensecm expense={expcm}/>
-            <ExpCategory />
+            {!expcm && <Spinner message='Loading data..' />}
+            {expcm && (
+              <>
+                <Expensecm expense={expcm} />
+                <ExpCategory />
+              </>
+            )}
           </>
         )}
       </Fade>

@@ -39,9 +39,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <>
+        <Container className="background-dim" fluid>
         <Header/>
         <Route exact path="/" component={LandingPage}/>
-        <Container className="background-dim" fluid>
+        
           <Switch>
           
           <Route exact path="/about" component={About} />

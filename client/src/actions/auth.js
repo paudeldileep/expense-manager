@@ -113,14 +113,33 @@ export const register = (formData) =>async dispatch=>{
 //LOGOUT
 
 export const logout = () =>dispatch =>{
+
     dispatch({type:LOGOUT});
     
 }
 
 //oauth sign in
 
-export const oauthsignin = (email) =>dispatch =>{
+export const oauthsignin =({email,name}) =>async dispatch =>{
+
     console.log(email)
-    dispatch({type:OLOGIN_SUCCESS});
+    console.log(name)
+    const config={
+        headers:{
+            'Content-Type':'application/json'
+        },
+    }
+    const body = JSON.stringify({name,email});
+    try{
+
+    const res = await axios.post('/api/users/g',body,config);
+
+        dispatch({type:OLOGIN_SUCCESS,payload:res.data});
+        dispatch(loaduser());
+    }
+    catch(err){
+        console.log(err);
+    }
+    
     
 }

@@ -21,6 +21,7 @@ import {
   CLEAR_PLOTY,
   GET_PLOTY,
   PLOTY_FAIL,
+  EXP_ADDED
 } from "./types"
 
 export const addexpense = (formData) => async (dispatch) => {
@@ -38,10 +39,14 @@ export const addexpense = (formData) => async (dispatch) => {
     const res = await axios.post("/api/exp", body, config)
 
     //dispatch({ type: NOT_LOADING })
+    dispatch({ type: EXP_ADDED })
     dispatch(setAlert(res.data.msg, "success-bg"))
   } catch (err) {
     //console.error(err.response.data);
     //dispatch({ type: NOT_LOADING })
+    if(err.response.data){
+      dispatch(setAlert(err.response.data.msg, "danger-bg"));
+    }
     const errors = err.response.data.errors
 
     if (errors) {

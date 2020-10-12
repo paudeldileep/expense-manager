@@ -14,6 +14,9 @@ export const LOGOUT = 'LOGOUT';
 export const LOADING = 'LOADING';
 export const NOT_LOADING = 'NOT_LOADING';
 
+//
+export const EXP_ADDED='EXP_ADDED'
+export const EXP_NOT_ADDED='EXP_NOT_ADDED'
 
 //expenses: month,day,yesterday
 export const GET_EXPCM = 'GET_EXPCM';

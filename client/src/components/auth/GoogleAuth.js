@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button"
 import { oauthsignin, logout } from "../../actions/auth";
@@ -20,7 +20,7 @@ class GoogleAuth extends Component {
           // create auth variable
 
           this.auth = window.gapi.auth2.getAuthInstance();
-          console.log(this.auth)
+          //console.log(this.auth)
           // can now use logic of onAuthChange for initial render
           this.onAuthChange(this.auth.isSignedIn.get());
           // listen for changes to authentication status
@@ -29,11 +29,14 @@ class GoogleAuth extends Component {
     });
   }
 
+  
+
   // triggered when authentication status changes
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
-      console.log(this.auth.currentUser.get().getBasicProfile().Wt)
-      this.props.oauthsignin(this.auth.currentUser.get().getBasicProfile().Wt);
+      const email=this.auth.currentUser.get().getBasicProfile().Wt
+      const name=this.auth.currentUser.get().getBasicProfile().dV+" "+this.auth.currentUser.get().getBasicProfile().fT
+      this.props.oauthsignin({email,name});
     } else {
       this.props.logout();
     }
@@ -46,22 +49,28 @@ class GoogleAuth extends Component {
 
   onSignOutClick = () => {
     this.auth.signOut();
+    logout()
   };
+
+  authRedirection=()=>{
+    if (this.props.gloginstatus) {
+      return <Redirect to='/home' />
+   }
+  }
 
   // helper function
   renderAuthButton() {
-    if (this.props.isAuthenticated === null) {
-      return null;
-    } else if (this.props.isAuthenticated) {
+    {this.authRedirection()}
+    if (this.props.gloginstatus) {
       return (
-        
-        <Button variant='primary' onClick={this.onSignOutClick} type='button'>
-        <i className='fa fa-google' aria-hidden='true'></i> Google
+        <Button className="bg-red" onClick={this.onSignOutClick} type='button' size="sm">
+        <i className='fa fa-sign-out color-white' aria-hidden='true'></i> Sign Out
       </Button>
       );
-    } else {
+   }
+ else {
       return (
-        <Button variant='primary' onClick={this.onSignInClick} type='button'>
+        <Button variant='primary' onClick={this.onSignInClick} type='button' >
         <i className='fa fa-google' aria-hidden='true'></i> Google
       </Button>
       );
@@ -78,7 +87,7 @@ class GoogleAuth extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { isAuthenticated: state.auth.isAuthenticated };
+  return { gloginstatus: state.auth.gloginstatus };
 }
 
 export default connect(mapStateToProps, { oauthsignin, logout })(GoogleAuth);

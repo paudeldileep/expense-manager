@@ -151,19 +151,26 @@ color:#CAF0F8;
    max-width:600px;
    width:100%;
    margin: auto;
+   background-color: #979DAC;
+   color:#CAF0F8;
  }
  .m-plot-div,.y-plot-div,.avg-plot-div{
   height:auto;
   max-width:750px;
-  width:100%;
+  width:85%;
   margin: auto;
   margin-top:15px;
+  background-color: #CAF0F8;
  }
 
  .background-dim{
    background-color: #7D8597;
    min-height:100vh;
    padding-top: 10px;
+ }
+
+ .bg-grey{
+  background-color: #7D8597;
  }
 
  .nav-text{

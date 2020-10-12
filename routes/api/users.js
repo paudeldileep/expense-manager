@@ -12,4 +12,10 @@ const validation = require('../../controllers/validation')
 Router.post('/',validation.usersignup_validation,Controller.usersignup);
 
 
+//@route POST api/users/g
+//@desc register a new google user
+//@access Public 
+Router.post('/g',Controller.gusersignup);
+
+
 module.exports = Router;

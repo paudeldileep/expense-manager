@@ -17,6 +17,7 @@ const initialState = {
   loading: true,
   user: null,
   isloading: false,
+  gloginstatus:false
 }
 
 export default function (state = initialState, action) {
@@ -63,11 +64,16 @@ export default function (state = initialState, action) {
         loading: false,
         user: null,
         isloading: false,
+        gloginstatus:false
       }
       case OLOGIN_SUCCESS:
+        localStorage.setItem("token", payload.token)
         return{
           ...state,
-          isAuthenticated:true
+          ...payload,
+          isAuthenticated:true,
+          gloginstatus:true,
+          isloading:false
         }
     default:
       return state

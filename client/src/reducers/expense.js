@@ -19,6 +19,8 @@ import {
   CLEAR_PLOTY,
   GET_PLOTY,
   PLOTY_FAIL,
+  EXP_ADDED,
+  EXP_NOT_ADDED
 } from "../actions/types"
 
 const initialState = {
@@ -29,6 +31,7 @@ const initialState = {
   plotavg:null,
   ploty:null,
   loading: true,
+  expadded:false,
   error: {},
 }
 
@@ -41,6 +44,16 @@ export default function (state = initialState, action) {
         ...state,
         expcm: null,
         loading: false,
+      }
+      case EXP_ADDED:
+      return {
+        ...state,
+        expadded: true,
+      }
+      case EXP_NOT_ADDED:
+      return {
+        ...state,
+        expadded: false,
       }
     case GET_EXPCM:
       return {
