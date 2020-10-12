@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import Container from 'react-bootstrap/esm/Container'
 import Login from '../../auth/Login'
 
@@ -13,8 +13,5 @@ const LandingPage = props => {
     )
 }
 
-LandingPage.propTypes = {
-
-}
 
 export default LandingPage

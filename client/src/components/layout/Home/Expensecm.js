@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React from "react"
 
-import PropTypes from "prop-types"
+
 
 import Container from "react-bootstrap/esm/Container"
 import Row from "react-bootstrap/Row"

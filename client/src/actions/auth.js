@@ -3,7 +3,7 @@ import {setAlert} from './alert';
 import{ USER_LOADED, AUTH_ERROR,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,REGISTER_SUCCESS,REGISTER_FAIL, LOADING,OLOGIN_SUCCESS} from './types';
 
 import setAuthToken from '../utils/setAuthToken';
-import { ExclamationCircle } from 'react-bootstrap-icons';
+
 
 
 //LOAD user

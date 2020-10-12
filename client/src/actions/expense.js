@@ -1,8 +1,7 @@
 import axios from "axios"
 import { setAlert } from "./alert"
 import {
-  LOADING,
-  NOT_LOADING,
+  
   GET_EXPCM,
   CLEAR_EXPCM,
   EXPCM_FAIL,

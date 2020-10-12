@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
+
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
@@ -19,6 +19,7 @@ import Spinner from "../../layout/Spinner"
 const Addexpense = ({
   addexpense,
   auth: { isAuthenticated, user, isloading },
+  expadded,
   setAlert
 }) => {
   //useState hooks
@@ -34,6 +35,8 @@ const Addexpense = ({
   if (!isAuthenticated && user == null) {
     return <Redirect to='/' />
   }
+
+  
 
   const { title, amount, category, incurred_on, notes } = formData
 
@@ -68,6 +71,9 @@ const Addexpense = ({
     })
   }
 
+  if(expadded){
+    resetForm()
+  }
   //get current date
   const now = new Date()
   // minimum date the user can choose, in this case now and in the future
@@ -183,6 +189,16 @@ const Addexpense = ({
                 </p>
               </Form>
             </Card.Body>
+            <Card.Footer>
+            <Button
+                    className='bg-red'
+                    as={Link}
+                    to='/'
+                    block
+                  >
+                    <i className='fa fa-backward color-white'></i> Overview
+                  </Button>
+            </Card.Footer>
           </Card>
         </div>
       )}
@@ -190,10 +206,11 @@ const Addexpense = ({
   )
 }
 
-Addexpense.propTypes = {}
+
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  expadded:state.expense.expadded
 })
 
 export default connect(mapStateToProps, { addexpense,setAlert })(Addexpense)

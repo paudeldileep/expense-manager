@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
-import { connect, useDispatch } from "react-redux"
+import { connect } from "react-redux"
 
 import Expensecm from "./Expensecm"
 
-import Searchresult from "./Searchresult"
+
 
 import { getexpcm } from "../../../actions/expense"
 
@@ -27,22 +27,6 @@ const Home = ({ expense: { expcm }, getexpcm,auth:{isloading} }) => {
     //return()=> dispatch({type:'CLEAR_EXPCM'})
   }, [getexpcm])
 
-  {
-    /* 
-  const setdatavalues=()=>{
-    if (expcm) {
-      if (expcm.month) setExpmonth(expcm.month.totalSpent)
-      if (expcm.today) setExptoday(expcm.today.totalSpent)
-      if (expcm.yesterday) setExpyesterday(expcm.yesterday.totalSpent)
-      setisloading(false)
-
-      // expmonth={expmonth}
-              exptoday={exptoday}
-              expyesterday={expyesterday}
-    }
-  }
-*/
-  }
   return (
     <>
       <Fade>

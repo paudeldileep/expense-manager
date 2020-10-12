@@ -1,18 +1,18 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
+
 import { connect } from "react-redux"
 import Container from "react-bootstrap/esm/Container"
 import Form from "react-bootstrap/Form"
 import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
-import Row from "react-bootstrap/Row"
+
 import Col from "react-bootstrap/Col"
 import InputGroup from "react-bootstrap/InputGroup"
 import { getexpplotm } from "../../../../actions/expense"
 import { VictoryTheme, VictoryScatter, VictoryChart, VictoryTooltip, VictoryLabel} from "victory"
 
 const Monthlyplot = ({ plot,getexpplotm }) => {
-  const [isloading, setisloading] = useState(true)
+  
 
   //useState hooks
 
@@ -96,7 +96,7 @@ const Monthlyplot = ({ plot,getexpplotm }) => {
   )
 }
 
-Monthlyplot.propTypes = {}
+
 
 const mapStateToProps = (state) => ({
     plot: state.expense.plotm,

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
+
 import { connect } from "react-redux"
 import Container from "react-bootstrap/esm/Container"
 
@@ -14,7 +14,7 @@ import { getexpploty } from "../../../../actions/expense"
 import {VictoryTheme, VictoryAxis, VictoryBar, VictoryChart} from "victory"
 
 const Yearlyplot = ({ plot, getexpploty }) => {
-  const [isloading, setisloading] = useState(true)
+  
   const monthStrings = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   //useState hooks
 
@@ -82,7 +82,7 @@ const Yearlyplot = ({ plot, getexpploty }) => {
   )
 }
 
-Yearlyplot.propTypes = {}
+
 const mapStateToProps = (state) => ({
   plot: state.expense.ploty,
 })

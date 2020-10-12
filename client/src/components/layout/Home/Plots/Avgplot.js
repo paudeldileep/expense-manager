@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
+
 import { connect } from "react-redux"
 import { getexpplotavg } from "../../../../actions/expense"
 import Searchexp from "../Searchexp"
@@ -8,7 +8,7 @@ import { VictoryPie, VictoryTheme, VictoryLabel } from "victory"
 import Container from "react-bootstrap/esm/Container"
 
 const Avgplot = ({ getexpplotavg, plot }) => {
-  const [isloading, setisloading] = useState(true)
+  
 
   //useState hooks
 
@@ -84,7 +84,7 @@ const Avgplot = ({ getexpplotavg, plot }) => {
   )
 }
 
-Avgplot.propTypes = {}
+
 
 const mapStateToProps = (state) => ({
   plot: state.expense.plotavg,

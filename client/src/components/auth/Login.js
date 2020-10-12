@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
+
 import {connect} from 'react-redux';
 import { Redirect } from "react-router-dom"
 
@@ -88,7 +88,7 @@ const Login = ({login,auth:{isAuthenticated,user,isloading}}) => {
   )
 }
 
-Login.propTypes = {}
+
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
